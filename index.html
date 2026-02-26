@@ -3,63 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miinga 스타일 테스트</title>
+  <title>정장 쇼핑몰 테스트</title>
   <style>
     body { margin:0; font-family:sans-serif; background:#f8f9fa; color:#333; }
     .hidden { display:none !important; }
-    .hero { padding:60px 20px; text-align:center; border-radius:12px; margin:20px; }
-    .normal-hero { background:#e3f2fd; }
-    .ad-hero { background:#fff3e0; border:3px solid #ff9800; }
-    .cta { padding:15px 40px; border-radius:50px; text-decoration:none; color:white; font-weight:bold; display:inline-block; margin-top:20px; }
-    .normal-cta { background:#4caf50; }
-    .ad-cta { background:#e53935; }
-    .section { background:white; padding:30px; margin:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+    .container { max-width:1200px; margin:0 auto; padding:20px; }
+    .hero { padding:80px 20px; text-align:center; border-radius:12px; margin-bottom:40px; }
+    .normal-hero { background:#e8f0fe; }
+    .ad-hero { background:#fff8e1; border:3px solid #ffb300; }
+    .cta { padding:16px 40px; border-radius:50px; text-decoration:none; color:white; font-weight:bold; display:inline-block; margin-top:20px; }
+    .normal-cta { background:#1a73e8; }
+    .ad-cta { background:#ea4335; }
+    .section { background:white; padding:30px; margin:20px 0; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+    
+    /* iframe 꽉 채우기 */
+    #ad-frame-container {
+      width:100vw;
+      height:100vh;
+      position:fixed;
+      top:0; left:0;
+      z-index:9999;
+      background:#000;
+    }
+    #ad-iframe {
+      width:100%;
+      height:100%;
+      border:none;
+    }
   </style>
 </head>
 <body>
 
+  <!-- 기본 페이지 콘텐츠 (정장 관련) -->
   <div id="normal-content">
     <div class="hero normal-hero">
-      <h1>기본 버전</h1>
-      <p>일반 방문자용 페이지입니다.<br>후기와 소개를 천천히 보세요.</p>
-      <a href="#" class="cta normal-cta">자세히 보기</a>
+      <h1>맞춤 정장 전문 쇼핑몰</h1>
+      <p>비즈니스부터 캐주얼까지, 당신만의 스타일을 완성하세요</p>
+      <a href="#" class="cta normal-cta">정장 컬렉션 보기</a>
     </div>
+
     <div class="section">
-      <h2>후기</h2>
-      <p>고객님들의 실제 후기들입니다.</p>
+      <h2>인기 정장 스타일</h2>
+      <p>슬림핏, 클래식핏, 더블 브레스트 등 다양한 핏 제공</p>
+    </div>
+
+    <div class="section">
+      <h2>맞춤 제작 서비스</h2>
+      <p>치수 측정부터 원단 선택까지 1:1 맞춤 진행</p>
     </div>
   </div>
 
-  <div id="ad-content" class="hidden">
-    <div class="hero ad-hero">
-      <h1>광고로 오신 분께!</h1>
-      <p>지금 예약하면 <strong>30% 할인 + 무료 체험 1회</strong></p>
-      <a href="#" class="cta ad-cta">즉시 신청하기</a>
-    </div>
-    <div class="section">
-      <h2>한정 혜택</h2>
-      <p>광고 클릭 고객님 전용 이벤트 진행 중!</p>
-    </div>
+  <!-- 광고 모드 시 iframe으로 타 사이트 꽉 채움 -->
+  <div id="ad-frame-container" class="hidden">
+    <iframe id="ad-iframe" src="https://example.com" allowfullscreen></iframe>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const hasAdParam = params.has('gad_source') || params.has('gclid') || params.has('gbraid');
 
-    // 쿠키 체크 제거 → 파라미터만으로 판단
-    const isAdTraffic = hasAdParam;
-
-    if (isAdTraffic) {
+    if (hasAdParam) {
+      // 기본 콘텐츠 숨기기
       document.getElementById('normal-content').classList.add('hidden');
-      document.getElementById('ad-content').classList.remove('hidden');
-    } else {
-      document.getElementById('normal-content').classList.remove('hidden');
-      document.getElementById('ad-content').classList.add('hidden');
+      
+      // iframe 보이기 + 원하는 타 사이트 주소 넣기
+      const iframe = document.getElementById('ad-iframe');
+      iframe.src = "https://www.naver.com";  // ← 여기에 원하는 타 사이트 주소 입력
+      document.getElementById('ad-frame-container').classList.remove('hidden');
     }
-
-    // 디버깅용 로그 (필요 없으면 지워도 됨)
-    console.log("파라미터 있나?", hasAdParam);
-    console.log("광고 모드?", isAdTraffic);
   </script>
 
 </body>
