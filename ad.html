@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>특별 혜택 - 광고로 오신 분들께</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <h1>광고 보고 오셨군요! 특별 혜택 드려요</h1>
+  </header>
+
+  <main class="container">
+    <section class="hero ad">
+      <h2>오늘 신청 시 30% 할인 + 무료 체험 1회</h2>
+      <p>선착순 마감 임박! 지금 바로 예약하세요.</p>
+      <a href="#" class="cta urgent">지금 상담 신청하기</a>
+    </section>
+
+    <section class="event">
+      <h2>한정 이벤트</h2>
+      <p>광고 클릭 고객님 전용 혜택입니다.</p>
+    </section>
+  </main>
+
+  <!-- 재방문 시에도 광고 버전 유지하려면 쿠키 저장 -->
+  <script>
+    document.cookie = "traffic_type=ad; path=/; max-age=2592000; SameSite=Lax";
+
+    // 필요 시 index.html로 돌아갈 수 있는 링크 추가
+    // <a href="index.html">일반 버전 보기</a>
+  </script>
+</body>
+</html>
