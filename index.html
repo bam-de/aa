@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>기본 버전 - 환영합니다</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <h1>환영합니다! 일반 방문자 모드</h1>
+  </header>
+
+  <main class="container">
+    <section class="hero normal">
+      <h2>우리 서비스를 천천히 알아보세요</h2>
+      <p>후기, 소개, 프로그램 정보가 가득합니다.</p>
+      <a href="#" class="cta normal">자세히 보기</a>
+    </section>
+
+    <section class="reviews">
+      <h2>고객 후기</h2>
+      <p>많은 분들이 만족하셨어요~</p>
+    </section>
+  </main>
+
+  <script>
+    // 광고 파라미터가 있으면 ad.html로 리다이렉트
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('gad_source') || urlParams.has('gclid') || urlParams.has('gbraid')) {
+      window.location.replace('ad.html' + window.location.search);  // 파라미터도 그대로 넘김
+    }
+  </script>
+</body>
+</html>
